@@ -1,4 +1,4 @@
-package com.hooney.conditionroof;
+package com.hooney.conditionloop;
 
 import java.util.Scanner;
 
@@ -13,8 +13,10 @@ public class ApplicationProgramming {
 //		pr04.birthStone();
 //		Practice05 pr05 = new Practice05();
 //		pr05.paperRockScissors();
-		Practice06 pr06 = new Practice06();
-		pr06.ageCalc();
+//		Practice06 pr06 = new Practice06();
+//		pr06.ageCalc();
+		PrimeNumber pn = new PrimeNumber();
+		pn.calculator();
 		
 		
 
