@@ -1,51 +1,66 @@
-package com.hooney.array;
+package com.kudangtang.jv200.mod005;
+
+import java.util.Scanner;
 
 public class ArrayComparison {
 	/**
-	 * 2개의 배열을 생성한다
-	 * 각 배열의 요소는 똑같은 자료형을 갖고 있다
-	 * 2개의 배열을 매개변수로 받는다
-	 * 두 배열의 각 요소들이 서로 포함 관계인지 검사하는 알고리즘 구현
+	 * 복사된 배열의 요소 구성을 비교하는 프로그램
+	 * 1개의 int형 배열 arrayA 를 생성한다
+	 * int형 배열을 카피해서 arrayB 를 생성한다
+	 * 두 배열의 첫번째 인덱스와 마지막 인덱스
+	 * 값의 조건연산을 통해 포함여부 검사
 	 */
 	
-	//매개변수로 받기 위해 메소드 밖에 배열 생성
-	private int A;
-	private int B;
-	private int[] arrayA;
-	private int[] arrayB;
-	
-	//2개의 배열을 (int형 배열 2개 arrayA, arrayB) 매개변수로 받기위해 생성자 선언
-	public ArrayComparison(int A, int B) {
-		this.A = A;
-		this.B = B;
+	//배열 생성
+	Scanner scanner = new Scanner(System.in);
+	int arraysize1;
+	int arraysize2;
+	int indexCheckNum;
+	int[] arrayA;
+	int[] arrayB;
+	//배열 arrayA에 값 추가
+	public int[] arrayPutValue() {
+		System.out.print("arrayA 배열의 크기를 입력해주세요: ");
+		arraysize1 = scanner.nextInt();
+		arrayA = new int[arraysize1];
+		for (int i = 0; i < arrayA.length; i++) {
+			arrayA[i] = (i + 1);
+		}
+		return arrayA;
 	}
 	
-	//각 배열을 생성하고 값담기
-	public void putValue() {
-		for (int i = 0; i < arrayA.length; i++) {
-			for (int j = 0; j < arrayB.length; j++) {
-				System.out.println(arrayB[j]);
-			}
-			System.out.println(arrayB[i]);
-		}
-	}		
+	//배열 arrayB 에 값 복사
+	//검증을 위한 index 값을 생성
+	public int[] arrayCopy() {
+		System.out.print("arrayB 배열의 크기를 입력해주세요: ");
+		arraysize2 = scanner.nextInt();
+		System.out.println();
+		System.out.println();
+		System.out.print("index 검증 값을 입력해주세요: ");
+		indexCheckNum = scanner.nextInt();
+		arrayB = new int[arraysize2];
+		System.arraycopy(arrayA, 0, arrayB, indexCheckNum, arraysize2-indexCheckNum);
+		return arrayB;
+	}
 	
 	//두 배열의 구성 요소가 같은지 비교해서 출력하는 메서드 생성
 	//두 배열의 요소 null 값 검사
 	//두 배열의 구성 요소와 길이 같은지 검사
-	public boolean elementComparison() {
-		if ( arrayA == arrayB ) {
-			return true;
+	public void elementComparison() {
+		if ( arrayA[arraysize1-indexCheckNum-1] != arrayB[arraysize2-indexCheckNum-1] ) {
+			System.out.println("arrayA와 arrayB는 요소가 같지 않습니다.");
 		}
 		//null에 대한 에러 방지
 		else if ( arrayA == null || arrayB == null ) {
-			return false;
+			System.out.println("arrayA와 arrayB의 값이 없습니다.");
 		}
 		//두 배열의 길이 비교
 		else if ( arrayA.length != arrayB.length ) {
-			return false;
+			System.out.println("arrayA와 arrayB는 크기가 같지 않습니다.");
+		}
+		else {
+			System.out.println("arrayA와 arrayB는 요소도 크기도 같습니다.");
 		}
 		
-		return true;
 	} 
 }
