@@ -24,12 +24,15 @@ public class Manager extends Employee {
 	
 	public static void main(String[] args) {
 		Manager m = new Manager("김과장", 3500.0, new MyDate(8, 11, 1992),"기획부");
-		String info = m.getDatails();
-		System.out.println("info\n" + info);
-		System.out.println("------------------------------------");
+//		String info = m.getDatails();
+//		System.out.println("info\n" + info);
+//		System.out.println("------------------------------------");
+//		
+//		Employee e = new Employee("박대리", 3200.0, new MyDate(29, 7, 1986));
+//		info = e.getDatails();
+//		System.out.println("info\n" + info);
 		
-		Employee e = new Employee("박대리", 3200.0, new MyDate(29, 7, 1986));
-		info = e.getDatails();
-		System.out.println("info\n" + info);
+		
+		
 	}
 }

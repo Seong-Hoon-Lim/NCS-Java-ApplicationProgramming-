@@ -53,5 +53,22 @@ public class MyDate {
 	public String getDetails() {
 		return year + "-" + month + "-" + day;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof MyDate) {
+			MyDate d = (MyDate)o;
+			if (d.day == this.day && d.month == this.month
+					&& d.year == this.year) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static void main(String[] args) {
+		MyDate d = new MyDate(1, 1, 2000);
+		MyDate d2 = new MyDate(1, 1, 2000);
+		System.out.println(d.equals(d2));
+	}
 		
 }
