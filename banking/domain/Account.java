@@ -1,9 +1,14 @@
 package com.kudangtang.banking.domain;
 
+import com.kudangtang.banking.exception.InsufficientBalanceException;
+import com.kudangtang.banking.exception.OverdraftException;
+
 public class Account {
 	private String accountNum;
-	private double balance;
+	protected double balance;
 	private Customer customer;
+	//입금횟수
+	protected int count = 0;
 	
 	public Account(double balance) {
 		this.balance = balance;
@@ -14,13 +19,14 @@ public class Account {
 		this.balance += amount;
 		System.out.println("입금된 금액은 " + amount + "원 입니다");
 		System.out.println("현재 잔고는 " + balance + "원 입니다");
+		count++;
+		System.out.println("현재 입금 횟수는: " + count + "회 입니다");
 	}
 	
 	//출금하기
-	public void withdraw(double amount) {
+	public void withdraw(double amount) throws OverdraftException, InsufficientBalanceException {
 		if (balance <= amount) {
-			System.out.println("잔고가 부족합니다");
-			System.out.println("현재 잔고는 " + balance + "원 입니다");
+			throw new InsufficientBalanceException("잔고가 부족합니다.");
 		}
 		else {
 			this.balance -= amount;
@@ -51,8 +57,7 @@ public class Account {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-	
-	
+		
+	}	
 	
 }
