@@ -25,14 +25,9 @@ public class AccountTest {
 		//계좌생성
 		System.out.println("\n계좌1 생성");
 		AccountNumberGenerator an = new AccountNumberGenerator();
-		System.out.println("생성된 계좌번호는: " + an.accountNumberGenerate() + " 입니다\n");
+		System.out.println("생성된 계좌번호는: " + an.generateAccountNum() + " 입니다\n");
 	
-		account.deposit(5000.0);
-		account.deposit(5000.0);
-		account.deposit(5000.0);
 		
-		sa.setInterestRate(2.5);
-		sa.getInterestRate();
 		try {
 			sa.bearInterest();
 		}
@@ -46,20 +41,12 @@ public class AccountTest {
 		CheckingAccount check = new CheckingAccount(0.0);
 		check.setBalance(account);
 		check.getBalance();
-			
-		check.setOverdraftProtection(5000.0);
-		check.getOverdraftProtection();
+
 		
 		try {
 			//출금하기
 			check.withdraw(5000.0);
-			check.withdraw(5000.0);
-			check.withdraw(5000.0);
-			check.withdraw(5000.0);
-			check.withdraw(5000.0);
-			check.withdraw(5000.0);
-			check.withdraw(5000.0);
-			check.withdraw(5000.0);
+
 		}
 		catch (OverdraftException e) {
 			e.printStackTrace();
@@ -68,7 +55,7 @@ public class AccountTest {
 		//계좌2 생성
 		System.out.println("\n계좌2 생성");
 		AccountNumberGenerator an3 = new AccountNumberGenerator();
-		System.out.println("생성된 계좌번호는: " + an3.accountNumberGenerate() + " 입니다\n");
+		System.out.println("생성된 계좌번호는: " + an3.generateAccountNum() + " 입니다\n");
 		Account account2 = new Account(6000.0);
 		try {
 			account2.withdraw(5000.0);
