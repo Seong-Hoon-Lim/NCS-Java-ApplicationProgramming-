@@ -1,0 +1,6 @@
+직원의 name, salary, birthDate가 동일하면 같은 직원이 되도록 equals메소드를 오버라이딩 하세요.
+	ex) 
+	Employee e = new Employee("유비", 1000.0, 2000-05-10)
+	Employee e2 = new Employee("유비", 1000.0, 2000-05-10)
+	if(e == e2) => false
+	if(e.equals(e2)) => true
