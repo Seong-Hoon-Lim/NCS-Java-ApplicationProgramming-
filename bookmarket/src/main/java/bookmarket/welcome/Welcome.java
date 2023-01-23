@@ -12,6 +12,7 @@ public class Welcome {
 	 * 도서 목록 표시하기
 	 * 장바구니에 항목 추가하기
 	 * 사용자,관리자 정보 관리 및 관리자 로그인 기능 만들기
+	 * 장바구니 항목 삭제 및 비우기
 	 * 
 	 * @author "SeongHoon"
 	 */
@@ -25,7 +26,7 @@ public class Welcome {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
-		String[][] mbook = new String[NUM_BOOK][NUM_ITEM];	//도서 정보르 저장할 2차원 배열
+		String[][] mbook = new String[NUM_BOOK][NUM_ITEM];	//도서 정보를 저장할 2차원 배열
 		
 		
 		System.out.print("이름을 입력해주세요: ");
@@ -108,6 +109,9 @@ public class Welcome {
 				menuExit();
 				quit = true;	//반복문 종료 조건
 				break;
+			case 9:
+				menuAdminLogin();
+				break;
 				}
 			}
 		}	//while 문 끝
@@ -157,14 +161,14 @@ public class Welcome {
 	public static void menuCartAddItem(String[][] book) {
 //		System.out.println("4. 장바구니에 항목 추가하기: ");
 		
-//		BookList(book);	//도서 정보를 저장하는 메소드 호출
-//		
-//		for (int i = 0; i < NUM_BOOK; i++) {
-//			for (int j = 0; j < NUM_ITEM; j++) {
-//				System.out.print(book[i][j] + " : ");	//도서정보 출력
-//			System.out.println(" ");
-//			}
-//		}
+		BookList(book);	//도서 정보를 저장하는 메소드 호출
+		
+		for (int i = 0; i < NUM_BOOK; i++) {
+			for (int j = 0; j < NUM_ITEM; j++) {
+				System.out.print(book[i][j] + " | ");	//도서정보 출력
+			System.out.println(" ");
+			}
+		}
 		
 		boolean quit = false;
 		
@@ -176,12 +180,12 @@ public class Welcome {
 			Scanner input = new Scanner(System.in);
 			String str = input.nextLine();
 			
-			boolean flag = false;
-			int numId = -1;
+			boolean flag = false;	//도서 정보의 일치여부
+			int numId = -1;		//도서 정보의 Index 번호
 			
 			/**
 			 * 입력된 도서의 ID와 저장된 도서의 ID가 일치하는지 확인
-			 * 일치하면 도서 정보의 numId(index 번호)와 flag(일치 여부) 변수에
+			 * 일치하면 도서 정보의 numId 변수와 flag 변수에
 			 * 값을 변경하여 저장하고 반복문 종료
 			 */
 			for (int i = 0; i < NUM_BOOK; i++) {
@@ -268,6 +272,26 @@ public class Welcome {
 			}
 		}
 		return flag;
+	}
+	
+	public static void menuAdminLogin() {
+		System.out.println("관리자 정보를 입력하세요");
+		
+		Scanner input = new Scanner(System.in);
+		System.out.print("아이디: ");
+		String adminId = input.next();
+		
+		System.out.print("비밀번호: ");
+		String adminPw = input.next();
+		
+		Admin admin = new Admin(mUser.getName(), mUser.getPhone());
+		if (adminId.equals(admin.getId()) && adminPw.equals(admin.getPassword())) { 
+			System.out.println("이름 " + admin.getName() + " 연락처 " + admin.getPhone());
+			System.out.println("아이디 " + admin.getId() + " 비밀번호 " + admin.getPassword());
+		}
+		else 
+			System.out.println("관리자 정보가 일치하지 않습니다.");
+		
 	}
 	
 }
