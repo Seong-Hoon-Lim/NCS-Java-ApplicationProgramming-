@@ -1,17 +1,12 @@
 package com.kudangtang.banking.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
 	private String name;
 	private String ssn;
 	private String phone;
-	
-	public Customer() {
-		
-	}
-	
-	public Customer(String ssn) {
-		
-	}
 	
 	public Customer(String name, String ssn, String phone) {
 		this(name, ssn, phone, null, null);

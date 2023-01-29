@@ -5,14 +5,14 @@ public class Account {
 	private double balance;
 	private double interestRate;
 	private double overdraft;
-	private char accountType;
+	private byte accountType;
 	protected Customer customer;
 	
 	public Account() {
 		
 	}
 	
-	public Account(String accountNum, double balance, double interestRate, double overdraft, char accountType,
+	public Account(String accountNum, double balance, double interestRate, double overdraft, byte accountType,
 			Customer customer) {
 		super();
 		this.accountNum = accountNum;
@@ -55,11 +55,11 @@ public class Account {
 		this.overdraft = overdraft;
 	}
 
-	public char getAccountType() {
+	public byte getAccountType() {
 		return accountType;
 	}
 
-	public void setAccountType(char accountType) {
+	public void setAccountType(byte accountType) {
 		this.accountType = accountType;
 	}
 
@@ -79,5 +79,3 @@ public class Account {
 	}
 
 }
-
-
