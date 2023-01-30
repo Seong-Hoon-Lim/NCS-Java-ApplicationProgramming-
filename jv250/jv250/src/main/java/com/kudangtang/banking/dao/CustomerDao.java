@@ -129,13 +129,7 @@ public class CustomerDao {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, ssn);
 				
-				rs = pstmt.executeQuery();
-				if(rs == null) {
-					System.out.println("----");
-				}else {
-					System.out.println(rs);
-				}
-				
+				rs = pstmt.executeQuery();								
 				if (rs.next()) {
 					customer = new Customer(rs.getString("name")
 							,rs.getString("ssn"),rs.getString("phone"));
@@ -189,10 +183,7 @@ public class CustomerDao {
 			ResultSet rs = null;			
 			try {
 				con = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWD);
-				String sql = "DELETE FROM Customer WHERE sns=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, customer.getSsn());
-				pstmt.executeUpdate();
+				
 			
 			}
 			finally {
@@ -203,6 +194,6 @@ public class CustomerDao {
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			}
 		}
 	}
+}

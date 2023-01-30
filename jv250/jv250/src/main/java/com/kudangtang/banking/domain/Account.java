@@ -1,18 +1,27 @@
 package com.kudangtang.banking.domain;
 
 public class Account {
-	private String accountNum;
-	private double balance;
-	private double interestRate;
-	private double overdraft;
-	private byte accountType;
+	protected String accountNum;
+	protected double balance;
+	protected double interestRate;
+	protected double overdraft;
+	protected String accountType;
 	protected Customer customer;
+	private Long aid;
 	
 	public Account() {
 		
 	}
 	
-	public Account(String accountNum, double balance, double interestRate, double overdraft, byte accountType,
+	public Account(double balance) {
+		
+	}
+	
+	public Account(String accountNum, double balance) {
+		
+	}
+	
+	public Account(String accountNum, double balance, double interestRate, double overdraft, String accountType,
 			Customer customer) {
 		super();
 		this.accountNum = accountNum;
@@ -22,6 +31,7 @@ public class Account {
 		this.accountType = accountType;
 		this.customer = customer;
 	}
+	
 
 	public String getAccountNum() {
 		return accountNum;
@@ -55,11 +65,11 @@ public class Account {
 		this.overdraft = overdraft;
 	}
 
-	public byte getAccountType() {
+	public String getAccountType() {
 		return accountType;
 	}
 
-	public void setAccountType(byte accountType) {
+	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
 
@@ -71,11 +81,20 @@ public class Account {
 		this.customer = customer;
 	}
 	
+	public Long getAid() {
+		return aid;
+	}
+
+	public void setAid(Long aid) {
+		this.aid = aid;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Account [accountNum=" + accountNum + ", balance=" + balance + 
-							"interestRate" + interestRate + "overdraft" + overdraft + 
-								"accountType" + accountType +"]";
+							 "interestRate=" + interestRate + " overdraft=" + overdraft + 
+								" accountType=" + accountType +"]";
 	}
 
 }

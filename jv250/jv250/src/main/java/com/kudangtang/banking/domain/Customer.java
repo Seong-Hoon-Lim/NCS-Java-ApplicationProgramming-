@@ -1,12 +1,18 @@
 package com.kudangtang.banking.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Customer {
 	private String name;
 	private String ssn;
 	private String phone;
+	private Long cid;
+	
+	public Customer() {
+		
+	}
+	
+	public Customer(String ssn) {
+		
+	}
 	
 	public Customer(String name, String ssn, String phone) {
 		this(name, ssn, phone, null, null);
@@ -42,6 +48,14 @@ public class Customer {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public Long getCid() {
+		return cid;
+	}
+
+	public void setCid(Long cid) {
+		this.cid = cid;
 	}
 
 	@Override
