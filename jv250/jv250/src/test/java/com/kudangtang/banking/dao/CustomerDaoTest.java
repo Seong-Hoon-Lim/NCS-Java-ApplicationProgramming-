@@ -7,9 +7,9 @@ import com.kudangtang.banking.domain.Customer;
 
 public class CustomerDaoTest {
 	public static void main(String[] args) {
-		addCustomer();
-		updateCustomer();
-		findAllCustomerList();
+//		addCustomer();
+		//updateCustomer();
+		//findAllCustomerList();
 		findCustomerBySsn();
 	}
 	
