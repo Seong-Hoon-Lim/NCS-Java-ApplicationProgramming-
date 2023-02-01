@@ -20,7 +20,7 @@ import com.kudangtang.banking.domain.Customer;
 public class CustomerDao {
 
 	//고객 DB 추가하는 메소드
-	public static void addCustomer(Customer customer) {
+	public void addCustomer(Customer customer) {
 		String sql = "INSERT INTO Customer(name, ssn, phone) VALUES (?, ?, ?)";
 		try {
 			Connection con = null;

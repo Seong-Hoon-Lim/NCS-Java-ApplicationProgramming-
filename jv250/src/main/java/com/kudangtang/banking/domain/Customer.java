@@ -10,6 +10,10 @@ public class Customer {
 		
 	}
 	
+	public Customer(long cid) {
+		this.cid = cid;
+	}
+	
 	public Customer(String ssn) {
 		
 	}

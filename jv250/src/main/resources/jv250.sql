@@ -10,6 +10,7 @@ CREATE TABLE Customer (
 )AUTO_INCREMENT = 1001;
 
 SELECT * FROM Customer;
+
 SELECT cid, name FROM Customer;
 SELECT cid, name FROM Customer WHERE name='유비' AND ssn='901212-9012121';
 SELECT ssn FROM Customer;

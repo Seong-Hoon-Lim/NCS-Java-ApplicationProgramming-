@@ -6,7 +6,8 @@ public class Account {
 	protected double interestRate;
 	protected double overdraft;
 	protected char accountType;
-	protected Customer customer;
+	private Customer customer;
+	protected Long customerId;
 	private Long aid;
 	
 	public Account() {
@@ -21,13 +22,15 @@ public class Account {
 		
 	}
 	
-	public Account(String accountNum, double balance, double interestRate, double overdraft, char accountType) {
+	public Account(String accountNum, double balance, double interestRate, double overdraft, char accountType, Long customerId) {
 		super();
 		this.accountNum = accountNum;
 		this.balance = balance;
 		this.interestRate = interestRate;
 		this.overdraft = overdraft;
 		this.accountType = accountType;
+		this.customerId = customerId;
+		
 	}
 	
 
@@ -70,13 +73,22 @@ public class Account {
 	public void setAccountType(char accountType) {
 		this.accountType = accountType;
 	}
-
+	
 	public Customer getCustomer() {
 		return customer;
 	}
-
+	
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 	
 	public Long getAid() {
@@ -93,6 +105,10 @@ public class Account {
 		return "Account [accountNum=" + accountNum + ", balance=" + balance + 
 							 "interestRate=" + interestRate + " overdraft=" + overdraft + 
 								" accountType=" + accountType +"]";
-	}
-
+	}		
+	
+//	public static void main(String[] args) {
+//		Account account = new Account();
+//		System.out.println(account.getCustomer().getCid().toString());
+//	}
 }

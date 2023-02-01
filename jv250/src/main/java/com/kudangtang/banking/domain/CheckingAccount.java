@@ -1,12 +1,20 @@
 package com.kudangtang.banking.domain;
 
-
-
 public class CheckingAccount extends Account{
 	private double overdraftProtection;
-	
+
 	public CheckingAccount() {
 		
+	}
+	
+	public CheckingAccount(String accountNum, double balance, double interestRate, double overdraft, char accountType, Long customerId) {
+		super();
+		this.accountNum = accountNum;
+		this.balance = balance;
+		this.interestRate = interestRate;
+		this.overdraft = overdraft;
+		this.accountType = accountType;
+		this.customerId = customerId;
 	}
 	
 	public CheckingAccount(String accountNum, double initBalance, double protect){

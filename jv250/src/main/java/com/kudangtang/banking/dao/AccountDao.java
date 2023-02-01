@@ -17,9 +17,10 @@ import com.kudangtang.banking.domain.CheckingAccount;
 public class AccountDao {
 
 	//계좌 DB 추가하는 메소드
-	public static void addAccount(Account account) {
-		String sql = "INSERT INTO Account(accountNum, balance, interestRate, overdraft, accountType, customerId) VALUES (?, ?, ?, ?, ?, ?)";
-//		String sql = "INSERT INTO Account(accountNum, balance, interestRate, overdraft, accountType) VALUES (?, ?, ?, ?, ?)";
+	public void addAccount(Account account) {
+				
+		String sql = "INSERT INTO Account(accountNum, balance, interestRate, overdraft, accountType, customerId) "
+				+ "		VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -30,8 +31,7 @@ public class AccountDao {
 				pstmt.setDouble(2, account.getBalance());
 				
 				if(account instanceof SavingsAccount) {
-					SavingsAccount saccount = (SavingsAccount)account;
-					pstmt.setDouble(3, saccount.getInterestRate());
+					pstmt.setDouble(3, ((SavingsAccount)account).getInterestRate());
 					pstmt.setDouble(4, 0.0);
 					pstmt.setString(5, String.valueOf(BankConstants.SA));
 				}
@@ -39,7 +39,6 @@ public class AccountDao {
 					pstmt.setDouble(3, 0.0);
 					pstmt.setDouble(4, ((CheckingAccount)account).getOverdraft());
 					pstmt.setString(5, String.valueOf(BankConstants.CA));
-					
 				}
 				pstmt.setLong(6, account.getCustomer().getCid());
 				pstmt.executeUpdate();
@@ -227,4 +226,5 @@ public class AccountDao {
 			e.printStackTrace();
 			}
 		}
-	}
+	
+}
