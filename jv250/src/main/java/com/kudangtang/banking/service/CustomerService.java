@@ -17,7 +17,5 @@ public interface CustomerService {
 	
 	//모든 고객 리스트 가져오기
 	List<Customer> getAllCustomers();
-	
-	//
 
 }
