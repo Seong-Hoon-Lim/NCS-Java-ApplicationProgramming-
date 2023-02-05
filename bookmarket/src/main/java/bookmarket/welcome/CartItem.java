@@ -6,28 +6,39 @@ package bookmarket.welcome;
  *
  */
 public class CartItem {
-	private String[] itemBook = new String[7];
+//	private String[] itemBook = new String[7];
+	private Book itemBook;
 	private String bookId;
-	private int quantity;
+	private int quantity;	//책 수량
 	private int totalPrice;
 	
 	public CartItem() {
 		
 	}
 	
-	public CartItem(String[] book) {
-		this.itemBook = itemBook;
-		this.bookId = bookId;
-		this.quantity = quantity;
-		updateTotalPrice();
-		
+//	public CartItem(String[] book) {
+//		this.itemBook = book;
+//		this.bookId = book[0];
+//		this.quantity = 1;
+//		updateTotalPrice();
+//		
+//	}
+//
+//	public String[] getItemBook() {
+//		return itemBook;
+//	}
+	
+	public CartItem(Book bookList) {
+		this.itemBook = bookList;
+		this.bookId = bookList.getBookId();
+		this.quantity = 1;
 	}
-
-	public String[] getItemBook() {
+	
+	public Book getItemBook() {
 		return itemBook;
 	}
 
-	public void setItemBook(String[] itemBook) {
+	public void setItemBook(Book itemBook) {
 		this.itemBook = itemBook;
 	}
 
@@ -37,6 +48,7 @@ public class CartItem {
 
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
+		this.updateTotalPrice();
 	}
 
 	public int getQuantity() {
@@ -45,6 +57,7 @@ public class CartItem {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+		this.updateTotalPrice();
 	}
 
 	public int getTotalPrice() {
@@ -56,8 +69,8 @@ public class CartItem {
 	}
 	
 	public void updateTotalPrice() {
-		totalPrice = Integer.parseInt(this.itemBook[2]) * this.quantity;
-	}
-	
-	
+//		totalPrice = Integer.parseInt(this.itemBook[2]) * this.quantity;	//문자열을 숫자로 변경해서 연산
+		totalPrice = this.itemBook.getUnitPrice() * this.quantity;
+		
+	}	
 }

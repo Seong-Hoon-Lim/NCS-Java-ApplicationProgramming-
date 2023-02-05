@@ -19,14 +19,17 @@ public class Welcome {
 	
 	static final int NUM_BOOK = 3;	//도서의 개수에 대한 상수
 	static final int NUM_ITEM = 7;	//도서정보의 개수에 대한 상수
-	static CartItem[] mCartItem = new CartItem[NUM_BOOK];
-	static int mCartCount = 0;
+	
+//	static CartItem[] mCartItem = new CartItem[NUM_BOOK];
+//	static int mCartCount = 0;
+	static Cart mCart = new Cart();
 	static User mUser;
 	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
-		String[][] mbook = new String[NUM_BOOK][NUM_ITEM];	//도서 정보를 저장할 2차원 배열
+//		String[][] mBook = new String[NUM_BOOK][NUM_ITEM];	//도서 정보를 저장할 2차원 배열
+		Book[] mBookList = new Book[NUM_BOOK];
 		
 		
 		System.out.print("이름을 입력해주세요: ");
@@ -64,6 +67,7 @@ public class Welcome {
 		menuIntroduction();	//메뉴 목록 출력
 		
 		System.out.print("메뉴 번호를 선택해주세요: ");
+		
 		int n = input.nextInt();
 //		System.out.println(n + "번을 선택했습니다");
 		
@@ -90,7 +94,8 @@ public class Welcome {
 				break;
 			case 4:
 //				System.out.println("4. 장바구니에 항목 추가하기: ");
-				menuCartAddItem(mbook);
+//				menuCartAddItem(mBook);
+				menuCartAddItem(mBookList);
 				break;
 			case 5:
 //				System.out.println("5. 장바구니의 항목 수량 줄이기: ");
@@ -135,7 +140,7 @@ public class Welcome {
 //		System.out.println("이름: " + name + "/ 연락처 " + mobile);
 //		Person person = new Person(name, mobile);
 //		System.out.println("이름: " + person.getName() + "/ 연락처 " + person.getPhone());
-		System.out.println("이름 " + mUser.getName() + "  연락처 " + mUser.getPhone());
+		System.out.println("이름: " + mUser.getName() + "  연락처: " + mUser.getPhone());
 		
 	}
 	
@@ -161,12 +166,13 @@ public class Welcome {
 	public static void menuCartAddItem(String[][] book) {
 //		System.out.println("4. 장바구니에 항목 추가하기: ");
 		
+		System.out.println();
 		BookList(book);	//도서 정보를 저장하는 메소드 호출
 		
 		for (int i = 0; i < NUM_BOOK; i++) {
 			for (int j = 0; j < NUM_ITEM; j++) {
 				System.out.print(book[i][j] + " | ");	//도서정보 출력
-			System.out.println(" ");
+			System.out.println("");
 			}
 		}
 		
@@ -174,7 +180,7 @@ public class Welcome {
 		
 		//장바구니에 항목을 추가하지 않을 때까지 반복
 		while (!quit) {
-			System.out.print("장바구니에 추가할 도서의 ID를 입력하세요: ");
+			System.out.print("\n장바구니에 추가할 도서의 ID를 입력하세요: ");
 			
 			//도서 ID입력 받기
 			Scanner input = new Scanner(System.in);
@@ -236,30 +242,49 @@ public class Welcome {
 	}
 	
 	//도서 정보를 저장하는 메소드
-	public static void BookList(String[][] book) {
-		book[0][0] = "ISBN1234";
-		book[0][1] = "쉽게 배우는 JSP 웹 프로그래밍";
-		book[0][2] = "27000";
-		book[0][3] = "송미영";
-		book[0][4] = "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍";
-		book[0][5] = "IT전문서";
-		book[0][6] = "2018/10/08";		
+	public static void BookList(Book[] bookList) {
 		
-		book[1][0] = "ISBN1235";
-		book[1][1] = "안드로이드 프로그래밍";
-		book[1][2] = "33000";
-		book[1][3] = "우재남";
-		book[1][4] = "실습 단계별 명쾌한 멘토링";
-		book[1][5] = "IT전문서";
-		book[1][6] = "2022/01/22";
+		bookList[0] = new Book("ISBN1234", "쉽게 배우는 JSP 웹 프로그래밍", 27000);
+		bookList[0].setAuthor("송미영");
+		bookList[0].setDescroption("단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍");
+		bookList[0].setCategory("IT전문서");
+		bookList[0].setReleaseDate("2018/10/08");	
 		
-		book[2][0] = "ISBN1236";		
-		book[2][1] = "스크래치";		
-		book[2][2] = "22000";		
-		book[2][3] = "고광일";		
-		book[2][4] = "컴퓨팅 사고력을 키우는 블록 코딩";		
-		book[2][5] = "컴퓨터입문";		
-		book[2][6] = "2019/06/10";		
+		bookList[1] = new Book("ISBN1235", "안드로이드 프로그래밍", 33000);
+		bookList[1].setAuthor("우재남");
+		bookList[1].setDescroption("실습 단계별 명쾌한 멘토링");
+		bookList[1].setCategory("IT전문서");
+		bookList[1].setReleaseDate("2022/01/22");
+		
+		bookList[2] = new Book("ISBN1236", "스크래치", 22000);			
+		bookList[2].setAuthor("고광일");		
+		bookList[2].setDescroption("컴퓨팅 사고력을 키우는 블록 코딩");		
+		bookList[2].setCategory("컴퓨터입문");		
+		bookList[2].setReleaseDate("2019/06/10");		
+		
+//		book[0][0] = "ISBN1234";
+//		book[0][1] = "쉽게 배우는 JSP 웹 프로그래밍";
+//		book[0][2] = "27000";
+//		book[0][3] = "송미영";
+//		book[0][4] = "단계별로 쇼핑몰을 구현하며 배우는 JSP 웹 프로그래밍";
+//		book[0][5] = "IT전문서";
+//		book[0][6] = "2018/10/08";		
+//		
+//		book[1][0] = "ISBN1235";
+//		book[1][1] = "안드로이드 프로그래밍";
+//		book[1][2] = "33000";
+//		book[1][3] = "우재남";
+//		book[1][4] = "실습 단계별 명쾌한 멘토링";
+//		book[1][5] = "IT전문서";
+//		book[1][6] = "2022/01/22";
+//		
+//		book[2][0] = "ISBN1236";		
+//		book[2][1] = "스크래치";		
+//		book[2][2] = "22000";		
+//		book[2][3] = "고광일";		
+//		book[2][4] = "컴퓨팅 사고력을 키우는 블록 코딩";		
+//		book[2][5] = "컴퓨터입문";		
+//		book[2][6] = "2019/06/10";		
 		
 	}	
 	
@@ -274,6 +299,7 @@ public class Welcome {
 		return flag;
 	}
 	
+	//관리자 로그인 정보를 확인하는 메소드
 	public static void menuAdminLogin() {
 		System.out.println("관리자 정보를 입력하세요");
 		

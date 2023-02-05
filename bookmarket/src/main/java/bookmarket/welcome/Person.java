@@ -8,18 +8,18 @@ package bookmarket.welcome;
 public class Person {
 	private String name;
 	private int phone;
-	private String addres;
+	private String address;
 	
 	public Person(String name, int phone) {
 		this.name = name;
 		this.phone = phone;
 	}
 
-	public Person(String name, int phone, String addres) {
+	public Person(String name, int phone, String address) {
 		super();
 		this.name = name;
 		this.phone = phone;
-		this.addres = addres;
+		this.address = address;
 	}
 
 	public String getName() {
@@ -38,12 +38,12 @@ public class Person {
 		this.phone = phone;
 	}
 
-	public String getAddres() {
-		return addres;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAddres(String addres) {
-		this.addres = addres;
+	public void setAddress(String address) {
+		this.address = address;
 		
 	}
 }
