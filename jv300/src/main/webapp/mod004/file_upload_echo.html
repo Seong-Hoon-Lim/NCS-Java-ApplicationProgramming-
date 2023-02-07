@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>File Upload Example</h3>
+	<!-- 파일을 업로드 할 때 인코딩 타입을 반드시 enctype="multipart/form-data" 로 해야한다. -->
+	 <form action="file_upload_echo.do" method="post" enctype="multipart/form-data">
+	 	이름: <input type="text" name="name"><br>
+	 	첨부파일: <input type="file" name="attachedFile"><br>
+	 	<input type="submit" value="업로드">
+	</form>
+
+</body>
+</html>
