@@ -20,8 +20,7 @@ import javax.servlet.http.Part;
 		fileSizeThreshold = 1024 * 1024 * 2,
 		maxFileSize = 1024 * 1024 * 10,
 		maxRequestSize = 1024 * 1024 * 50)
-public class FileUploadServlet {
-	public class FileUploadEchoServlet extends HttpServlet {
+public class FileUploadServlet extends HttpServlet {
 		
 		private static final long serialVersionUID = 1L;
 		private static final String SAVE_DIR = "C:/Temp";
@@ -48,7 +47,6 @@ public class FileUploadServlet {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<html>");
-			out.println("<head><title></title></head>");
 			out.println("<body>");
 			out.println("<h3>Upload has been done successfully</h3>");
 			out.println("</body>");
@@ -66,7 +64,7 @@ public class FileUploadServlet {
 			}
 			return builder.toString();
 		}
-		
+		//해당 경로에서부터 파일의 이름을 추출해내는 메소드
 		private String extractFileName(Part part) {
 			String contentDisp = part.getHeader("Content-Disposition");
 			for (String s : contentDisp.split(";")) {
@@ -83,7 +81,5 @@ public class FileUploadServlet {
 			}
 			return "";
 		}
-		
-	}
 
 }
