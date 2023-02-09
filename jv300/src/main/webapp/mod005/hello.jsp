@@ -11,7 +11,7 @@
 
 <%-- Determine the specified name or user default name --%>
 <%
-	String name = request.getParameter("userName");
+	String name = request.getParameter("userName");		//request 는 내장객체
 	if ((name == null) || (name.length() == 0)) {
 		name = DEFAULT_NAME;
 	}

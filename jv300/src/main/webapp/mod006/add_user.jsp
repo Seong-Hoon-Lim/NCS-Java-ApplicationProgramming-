@@ -11,6 +11,7 @@
 	<form action="add_user.do" method="post">
 		회원아이디: <input type="text" name="userId" maxlength="20"><br>
 		비밀번호: <input type="password" name="passwd" maxlength="12"><br>
+		비밀번호 확인: <input type="password" name="passwdcheck" maxlength="12"><br>
 		이름: <input type="text" name="userName"><br>
 		주민번호: <input type="text" name="ssn1" maxlength="6">-<input type="password" name="ssn2" maxlength="7"><br>
 		이메일: <input type="text" name="email1">@

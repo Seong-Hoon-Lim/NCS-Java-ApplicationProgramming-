@@ -10,6 +10,7 @@
 <%
 	String userId = (String)request.getAttribute("userId");
 	String passwd = (String)request.getAttribute("passwd");
+	String passwdcheck = (String)request.getAttribute("passwdcheck");
 	String userName = (String)request.getAttribute("userName");
 	String ssn1 = (String)request.getAttribute("ssn1");
 	String ssn2 = (String)request.getAttribute("ssn2");
