@@ -1,6 +1,5 @@
-package com.kudangtang.jv300.mod006;
+package com.kudangtang.jv300.mod007;
 
-import java.io.Serializable;
 
 /**
  * Java Beans 규칙에 의해 만들어진 클래스
@@ -8,13 +7,14 @@ import java.io.Serializable;
  * @author "SeongHoon"
  *
  */
-public class User implements Serializable {
+public class User {
 	private String userId;
 	private String passwd;
 	private String userName;
 	private String ssn1;
 	private String ssn2;
 	private String email1;
+	private String email2;
 	
 	private String[] concerns;
 
@@ -64,6 +64,14 @@ public class User implements Serializable {
 
 	public void setEmail1(String email1) {
 		this.email1 = email1;
+	}
+	
+	public String getEmail2() {
+		return email2;
+	}
+
+	public void setEmail2(String email2) {
+		this.email2 = email2;
 	}
 
 	public String[] getConcerns() {
