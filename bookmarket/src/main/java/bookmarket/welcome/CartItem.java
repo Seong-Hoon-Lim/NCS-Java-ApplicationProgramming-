@@ -6,7 +6,6 @@ package bookmarket.welcome;
  *
  */
 public class CartItem {
-//	private String[] itemBook = new String[7];
 	private Book itemBook;
 	private String bookId;
 	private int quantity;	//책 수량
@@ -15,18 +14,6 @@ public class CartItem {
 	public CartItem() {
 		
 	}
-	
-//	public CartItem(String[] book) {
-//		this.itemBook = book;
-//		this.bookId = book[0];
-//		this.quantity = 1;
-//		updateTotalPrice();
-//		
-//	}
-//
-//	public String[] getItemBook() {
-//		return itemBook;
-//	}
 	
 	public CartItem(Book bookList) {
 		this.itemBook = bookList;
@@ -69,7 +56,7 @@ public class CartItem {
 	}
 	
 	public void updateTotalPrice() {
-//		totalPrice = Integer.parseInt(this.itemBook[2]) * this.quantity;	//문자열을 숫자로 변경해서 연산
+		//문자열을 숫자로 변경해서 연산
 		totalPrice = this.itemBook.getUnitPrice() * this.quantity;
 		
 	}	
