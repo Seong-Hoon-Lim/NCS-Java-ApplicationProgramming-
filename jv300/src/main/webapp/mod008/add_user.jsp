@@ -22,8 +22,8 @@
 		<c:if test="${not empty errorMsgs}">
 			<h4>다음과 같은 에러가 발생하였습니다.</h4>
 			<ul>
-				<c:forEach var="msg" items="${errorMsgs}">
-					<li>${msg}</li>		
+				<c:forEach var="errorMsg" items="${requestScope.errorMsgs}">
+					<li>${errorMsg}</li>		
 				</c:forEach>		
 			</ul>
 		</c:if>		
