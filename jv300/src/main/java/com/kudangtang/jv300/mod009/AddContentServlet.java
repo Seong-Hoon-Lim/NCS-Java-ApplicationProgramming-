@@ -18,6 +18,7 @@ public class AddContentServlet extends HttpServlet {
 	private static List<String[]> contentList;
 	
 	ServletContextListener icc = new InitializeCourseContents();	
+	//requestScope 을 가져오는 것을 가리킴
 	ServletContext context = this.getServletContext();
 	RequestDispatcher rd = null;
 

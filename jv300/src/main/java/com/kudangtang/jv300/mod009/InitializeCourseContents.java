@@ -33,6 +33,7 @@ public class InitializeCourseContents implements ServletContextListener {
 			while ((record = reader.readLine()) != null) {
 				String[] fields = record.split("\t");
 				contentList.add(fields);
+				//requestScope 를 가리킴
 				context.setAttribute("contentList", contentList);
 			}
 		}

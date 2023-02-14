@@ -1,0 +1,42 @@
+mod009 - ServletContextListener와 Application Scope
+	1.ServletContextListener
+		-.contextInitialized()
+		-.contextDestroyed()
+	2.Application Scope
+		-.setAttribute()
+		-.getAttribute()
+	
+@WebServlet("/mod009/add_context.do")
+public class AddContentServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	ServletContextListener icc = new InitializeCourseContents();	
+	ServletContext context = this.getServletContext();
+	
+	@SuppressWarnings("unchecked")
+	List<String[]> contentList = (List<String[]>) context.getAttribute("contentList");
+	
+	RequestDispatcher rd = null;
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException{
+			
+		request.setAttribute("contentList", contentList);	
+		rd = request.getRequestDispatcher("add_content.jsp");
+		rd.forward(request, response);
+		
+	}
+
+}
+
+
+<div>
+		<ul>
+			<c:forEach var="content" items="${applicationScope.contentList}">
+				<c:forEach var="str" items="${content}">
+					${str}
+				</c:forEach>
+				<br>
+			</c:forEach>
+		</ul>		
+</div>
