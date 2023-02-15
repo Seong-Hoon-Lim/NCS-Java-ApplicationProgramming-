@@ -3,6 +3,9 @@ package com.kudangtang.jv300.mod010;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +13,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+
+import com.kudangtang.jv300.mod010.dao.DataSource;
 
 @WebListener
 public class InitializeJdbc implements ServletContextListener {
@@ -52,6 +57,7 @@ public class InitializeJdbc implements ServletContextListener {
 			 */
 			DataSource dataSource = new DataSource(jdbcDriver, jdbcURL, 
 												userName, password);
+
 		}		
 		
 		catch (Exception e) {
