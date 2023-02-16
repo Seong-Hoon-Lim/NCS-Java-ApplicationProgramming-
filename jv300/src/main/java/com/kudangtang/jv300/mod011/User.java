@@ -1,9 +1,10 @@
-package com.kudangtang.jv300.mod010.domain;
+package com.kudangtang.jv300.mod011;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
 public class User {
+	private Long id;
 	private String userId;
 	private String passwd;
 	private String userName;
@@ -24,7 +25,15 @@ public class User {
 		this.userName = userName;
 		this.birthDate = birthDate;
 		this.email = email;
-	}	
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getUserId() {
 		return userId;

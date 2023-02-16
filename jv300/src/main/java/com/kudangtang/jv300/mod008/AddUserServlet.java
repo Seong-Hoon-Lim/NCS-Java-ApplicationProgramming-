@@ -63,9 +63,9 @@ public class AddUserServlet extends HttpServlet {
 		user.setEmail1(email1);
 		user.setEmail2(email2);
 		user.setConcerns(concerns);
-		//3. 비즈니스 서비스 호출
-		userService.addUser(user);
 		
+		//3. 비즈니스 서비스 호출
+		userService.addUser(user);		
 		
 		//4. Next View 결정
 		request.setAttribute("user", user);

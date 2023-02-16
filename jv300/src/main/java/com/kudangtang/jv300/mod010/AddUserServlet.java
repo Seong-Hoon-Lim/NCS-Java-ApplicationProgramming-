@@ -1,8 +1,12 @@
 package com.kudangtang.jv300.mod010;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kudangtang.jv300.mod010.dao.DataSource;
+import com.kudangtang.jv300.mod010.domain.User;
 import com.kudangtang.jv300.mod010.service.UserService;
 
 @WebServlet("/mod010/add_user.do")
@@ -31,11 +36,11 @@ public class AddUserServlet extends HttpServlet {
 		
 		//폼 파라메타 얻기
 		String userId = request.getParameter("userId");
-		String passwd = request.getParameter("userId");
-		String userName = request.getParameter("userId");
-		String birthDate = request.getParameter("userId");
-		String email1 = request.getParameter("userId");
-		String email2 = request.getParameter("userId");
+		String passwd = request.getParameter("passwd");
+		String userName = request.getParameter("userName");
+		String birthDate = request.getParameter("birthDate");
+		String email1 = request.getParameter("email1");
+		String email2 = request.getParameter("email2");
 		String email = email1 + "@" + email2;
 		String[] concerns = request.getParameterValues("concerns");
 		
@@ -52,9 +57,36 @@ public class AddUserServlet extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		Date date;
+		try {
+			date = format.parse(birthDate);
+		}
+		catch (ParseException e) {
+			Calendar cal = Calendar.getInstance();
+			cal.set(1900, 0, 1);	//값이 없을 경우 null 값을 생성하지 않기 위해 임의로 값 세팅
+			date = cal.getTime();
+		}
+		/**
+		 * User 객체를 캡슐화 한 것 
+		 */
+		User user = new User();
+		user.setUserId(userId);
+		user.setPasswd(passwd);
+		user.setUserName(userName);
+		user.setBirthDate(date);
+		user.setEmail(email);				
+		user.setConcerns(concerns);
 		
+		//비즈니스 서비스 호출
+		userService.addUser(user);
 		
-	}
+		//Next View 결정
+		request.setAttribute("user", user);
+		rd = request.getRequestDispatcher("success.jsp");
+		rd.forward(request, response);
+
+	}	
 	
 	private void validateEmpy(String value, String param, List<String> errorMsg) {
 		if (value == null || value.length() == 0) {
