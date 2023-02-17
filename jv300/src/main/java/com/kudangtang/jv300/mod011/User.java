@@ -1,6 +1,5 @@
 package com.kudangtang.jv300.mod011;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class User {
@@ -11,20 +10,34 @@ public class User {
 	private Date birthDate;
 	private String email;
 	private String[] concerns;
-	private Timestamp regDate;
+//	private Timestamp regDate;
 	
 	public User() {
 		
 	}
 	
+//	public User(String userId, String passwd, String userName,
+//			Date birthDate, String email, String[] concerns, Timestamp regDate) {
+//		super();
+//		this.userId = userId;
+//		this.passwd = passwd;
+//		this.userName = userName;
+//		this.birthDate = birthDate;
+//		this.email = email;
+//		this.concerns = concerns;
+//		this.regDate = regDate;
+//	}
+	
 	public User(String userId, String passwd, String userName,
-			Date birthDate, String email) {
+			Date birthDate, String email, String[] concerns) {
 		super();
 		this.userId = userId;
 		this.passwd = passwd;
 		this.userName = userName;
 		this.birthDate = birthDate;
 		this.email = email;
+		this.concerns = concerns;
+
 	}
 	
 	public Long getId() {
@@ -83,13 +96,13 @@ public class User {
 		this.concerns = concerns;
 	}
 
-	public Timestamp getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(Timestamp regDate) {
-		this.regDate = regDate;
-	}	
+//	public Timestamp getRegDate() {
+//		return regDate;
+//	}
+//
+//	public void setRegDate(Timestamp regDate) {
+//		this.regDate = regDate;
+//	}	
 
 
 }
