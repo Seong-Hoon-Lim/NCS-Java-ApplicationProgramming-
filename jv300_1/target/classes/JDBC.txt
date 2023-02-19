@@ -1,0 +1,4 @@
+JDBC.DRIVER = com.mysql.cj.jdbc.Driver
+JDBC.URL = jdbc:mysql://localhost:3306/jv300?serverTimeoutzone=Asia/Seoul
+JDBC.USERID = jv300
+JDBC.USERPW = jv300
