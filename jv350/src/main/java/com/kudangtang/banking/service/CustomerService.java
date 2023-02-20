@@ -9,8 +9,10 @@ public interface CustomerService {
 	 * 회원 가입 기능
 	 * @param customer
 	 */
-	void addCustomer(String name, String ssn, String phone, String tel, 
-			String userId, String passwd, String email);
+//	void addCustomer(String name, String ssn, String phone, String tel, 
+//			String userId, String passwd, String email);
+	
+	void addCustomer(Customer customer);
 		
 	/**
 	 * 로그인 기능

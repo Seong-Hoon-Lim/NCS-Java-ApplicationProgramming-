@@ -3,6 +3,7 @@ package com.kudangtang.banking.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +13,9 @@ import com.kudangtang.banking.domain.Customer;
 public class CustomerDao {
 	private DataSource dataSource;
 	
-	public CustomerDao() {
-		
-	}
+//	public CustomerDao() {
+//		
+//	}
 	
 	public CustomerDao(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -25,21 +26,39 @@ public class CustomerDao {
 	 * @param customer
 	 */
 	public void addCustomer(Customer customer) {
-		String sql = "INSERT INTO Customer(name, ssn, phone, tel, userId, passwd, email, regDate)" +
-						"VALUES (?,?,?,?,?,?,?,?)";
-		try (Connection con = dataSource.getConnection();
-				 PreparedStatement pstmt = con.prepareStatement(sql);) {
-				pstmt.setString(1, customer.getName());
-				pstmt.setString(2, customer.getSsn());
-				pstmt.setString(3, customer.getPhone());
-				pstmt.setString(4, customer.getTel());
-				pstmt.setString(5, customer.getUserId());
-				pstmt.setString(6, customer.getPasswd());
-				pstmt.setString(7, customer.getEmail());
-				pstmt.setString(8, customer.getRegDate());
-				pstmt.executeUpdate();
+		String sql = "INSERT INTO Customer (name, ssn, phone, tel, userId, passwd, email)" 
+						+ "VALUES (?,?,?,?,?,?,?)";
+		try { Connection con = null;
+			  PreparedStatement pstmt = null;
+			  try { con = dataSource.getConnection();
+			  		pstmt = con.prepareStatement(sql);
+			  		
+			  		pstmt.setString(1, customer.getName());
+					pstmt.setString(2, customer.getSsn());
+					pstmt.setString(3, customer.getPhone());
+					pstmt.setString(4, customer.getTel());
+					pstmt.setString(5, customer.getUserId());
+					pstmt.setString(6, customer.getPasswd());
+					pstmt.setString(7, customer.getEmail());
+					pstmt.executeUpdate();
+			  }
+			  finally {
+				dataSource.close(pstmt, con);
 			}
-		catch(Exception e) {
+		}
+//		try (Connection con = dataSource.getConnection();
+//			 PreparedStatement pstmt = con.prepareStatement(sql);) {
+//				pstmt.setString(1, customer.getName());
+//				pstmt.setString(2, customer.getSsn());
+//				pstmt.setString(3, customer.getPhone());
+//				pstmt.setString(4, customer.getTel());
+//				pstmt.setString(5, customer.getUserId());
+//				pstmt.setString(6, customer.getPasswd());
+//				pstmt.setString(7, customer.getEmail());
+////				pstmt.setString(8, customer.getRegDate());
+//				pstmt.executeUpdate();
+//			}
+		catch(SQLException e) {
 			e.printStackTrace();
 		}				
 		
@@ -70,7 +89,7 @@ public class CustomerDao {
 				customer.setUserId(rs.getString("userId"));
 				customer.setPasswd(rs.getString("passwd"));
 				customer.setEmail(rs.getString("email"));
-				customer.setRegDate(rs.getString("regDate"));
+//				customer.setRegDate(rs.getString("regDate"));
 			}
 		}
 		catch(Exception e) {
@@ -107,7 +126,7 @@ public class CustomerDao {
 				customer.setUserId(rs.getString("userId"));
 				customer.setPasswd(rs.getString("passwd"));
 				customer.setEmail(rs.getString("email"));
-				customer.setRegDate(rs.getString("regDate"));
+//				customer.setRegDate(rs.getString("regDate"));
 				list.add(customer);
 			}
 		}

@@ -12,16 +12,16 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerDao customerDao;
 	
 	private CustomerServiceImpl() {
-		
-	}
-	
-	public CustomerServiceImpl(DataSource dataSource) {
 		customerDao = new CustomerDao();
 	}
 	
-	public CustomerServiceImpl(CustomerDao customerDao) {
-		this.customerDao = customerDao;
+	public CustomerServiceImpl(DataSource dataSource) {
+		customerDao = new CustomerDao(dataSource);
 	}
+	
+//	public CustomerServiceImpl(CustomerDao customerDao) {
+//		this.customerDao = customerDao;
+//	}
 	
 	public static CustomerService getInstance() {
 		return cs;
@@ -32,7 +32,6 @@ public class CustomerServiceImpl implements CustomerService {
 	 * 고객 등록 기능
 	 * @param customer
 	 */	
-	@Override
 	public void addCustomer(String name, String ssn, String phone, String tel, 
 			String userId, String passwd, String email) {
 		// TODO Auto-generated method stub
@@ -44,9 +43,11 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setUserId(userId);
 		customer.setPasswd(passwd);
 		customer.setEmail(email);
+		
 		addCustomer(customer);	
 	}	
 	
+	@Override
 	public void addCustomer(Customer customer) {
 		customerDao.addCustomer(customer);
 	}

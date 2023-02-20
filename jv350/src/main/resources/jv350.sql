@@ -8,9 +8,13 @@ CREATE TABLE Customer (
 	userId	VARCHAR(20)	NOT	NULL,
 	passwd	VARCHAR(20)	NOT	NULL,
 	email	VARCHAR(20)	NOT	NULL,
-	regDate	TIMESTAMP	NOT	NULL	DEFAULT	CURRENT_TIMESTAMP,
+	regDate	TIMESTAMP	NOT	NULL	DEFAULT	CURRENT_TIMESTAMP
 	
 )AUTO_INCREMENT = 1001;
+
+INSERT INTO Customer (name, ssn, phone, tel, userId, passwd, email) 
+		VALUES ('james', '8905241671212', '01023411122', '0535451212', 'Spring', 'Spring12', 'Spring123@gmail.com');
+
 SELECT * FROM Customer;
 
 CREATE TABLE Account (

@@ -72,7 +72,7 @@ public class DataSource {
 	 * @return
 	 * @throws SQLException
 	 */
-	private Connection makeConnection() throws SQLException {
+	public Connection makeConnection() throws SQLException {
 		return DriverManager.getConnection(jdbcURL, userName, password);
 	}
 	
