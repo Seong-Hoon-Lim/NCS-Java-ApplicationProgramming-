@@ -1,7 +1,7 @@
 package com.kudangtang.banking.domain;
 
 public class Customer {
-	private Long cid;
+	private long id;
 	private String name;
 	private String ssn;
 	private String phone;
@@ -15,9 +15,10 @@ public class Customer {
 		
 	}
 	
-	public Customer(String name, String ssn, String phone, String tel, 
+	public Customer(long id, String name, String ssn, String phone, String tel, 
 			String userId, String passwd, String email) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.ssn = ssn;
 		this.phone = phone;
@@ -27,12 +28,12 @@ public class Customer {
 		this.email = email;
 	}
 	
-	public Long getCid() {
-		return cid;
+	public long getId() {
+		return id;
 	}
 
-	public void setCid(Long cid) {
-		this.cid = cid;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getName() {

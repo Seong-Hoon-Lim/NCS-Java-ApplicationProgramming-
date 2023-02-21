@@ -22,17 +22,19 @@ public class LoginServlet extends HttpServlet {
 	public void init() {
 		customerServiceImpl = new CustomerServiceImpl((DataSource)getServletContext()
 				.getAttribute("dataSource"));
+		customerServiceImpl = (CustomerServiceImpl) CustomerServiceImpl.getCustomerService();
 		
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {		
+			throws ServletException, IOException {			
 		
 		String userId = request.getParameter("userId");
 		String passwd = request.getParameter("passwd");
+		
 		System.out.println(userId + ", " + passwd);
+				
 		Customer customer = customerServiceImpl.getUser(userId, passwd);	
-		RequestDispatcher rd = null;
 		
 		/**
 		 * 고객정보 일치하지 않을 경우 다시 로그인 페이지로 이동
@@ -40,13 +42,15 @@ public class LoginServlet extends HttpServlet {
 		 */
 		if (customer == null) {
 			request.setAttribute("notfound", "해당 하는 유저 정보가 없습니다.");
+			System.out.println("로그인 실패");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			
 		}
 		else {
 			HttpSession session = request.getSession();
 			session.setAttribute("customer", customer);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			System.out.println();
+			request.getRequestDispatcher("mypage.jsp").forward(request, response);
 	
 		}
 	}

@@ -9,7 +9,7 @@ public interface CustomerService {
 	 * 회원 가입 기능
 	 * @param customer
 	 */
-	void addCustomer(String name, String ssn, String phone, String tel, 
+	void addCustomer(long id, String name, String ssn, String phone, String tel, 
 			String userId, String passwd, String email);
 		
 	/**

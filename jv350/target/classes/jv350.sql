@@ -1,7 +1,7 @@
 use jv350;
 DROP TABLE Customer;
 CREATE TABLE Customer (
-	cid		BIGINT		PRIMARY KEY AUTO_INCREMENT,
+	id		BIGINT		PRIMARY KEY AUTO_INCREMENT,
 	name	VARCHAR(20)	NOT NULL,
 	ssn		VARCHAR(13)	NOT	NULL	DEFAULT	'0000000000000',
 	phone	VARCHAR(11)	NOT	NULL	DEFAULT	'00000000000',
@@ -14,8 +14,8 @@ CREATE TABLE Customer (
 )AUTO_INCREMENT = 1001;
 SELECT * FROM Customer;
 
-INSERT INTO Customer(name, ssn, phone, tel, userId, passwd, email) 
-			VALUES ('유비', '8805241687722', '01023411144', '0535541144', 'Spring', 'Spring12', 'Spring123@gmail.com');
+INSERT INTO Customer(id, name, ssn, phone, tel, userId, passwd, email) 
+			VALUES ('1001', '유비', '8805241687722', '01023411144', '0535541144', 'Spring', 'Spring12', 'Spring123@gmail.com');
 
 DROP TABLE Account;
 CREATE TABLE Account (
@@ -28,6 +28,6 @@ CREATE TABLE Account (
 	customerId		BIGINT		NOT	NULL,
 	regDate			TIMESTAMP	NOT NULL	DEFAULT	CURRENT_TIMESTAMP,
 	
-	CONSTRAINT Account_customerId_FK FOREIGN KEY (customerId) REFERENCES Customer(cid)
+	CONSTRAINT Account_customerId_FK FOREIGN KEY (customerId) REFERENCES Customer(id)
 )AUTO_INCREMENT = 3001;
 SELECT * FROM Account;

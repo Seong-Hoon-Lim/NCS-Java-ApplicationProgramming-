@@ -56,8 +56,7 @@ public class CustomerDao {
 	 * @return
 	 */
 	public Customer findUser(String userId, String passwd) {
-		String sql = "SELECT name, ssn, phone, tel, userId, passwd, email, regDate " +
-						" FROM Customer WHERE userId=? AND passwd=?";
+		String sql = "SELECT * FROM Customer WHERE userId=? AND passwd=?";
 		Customer customer = null;
 		
 		try {
@@ -74,7 +73,7 @@ public class CustomerDao {
 		
 				if(rs.next()) {
 					customer = new Customer();
-					customer.setCid(rs.getLong("cid"));
+					customer.setId(rs.getLong("id"));
 					customer.setName(rs.getString("name"));
 					customer.setSsn(rs.getString("ssn"));
 					customer.setPhone(rs.getString("phone"));
@@ -107,15 +106,15 @@ public class CustomerDao {
 	public List<Customer> findAllCustomerList() {
 		// TODO Auto-generated method stub
 		List<Customer> list = new ArrayList<>();
-		String sql = "SELECT * FROM Customer";
+		String sql = "SELECT * FROM Customer ORDER BY id";
 		Customer customer = null;
 		
 		try (Connection con = dataSource.getConnection();
-				 PreparedStatement pstmt = con.prepareStatement(sql);
-				 ResultSet rs = pstmt.executeQuery();) {	
+			 PreparedStatement pstmt = con.prepareStatement(sql);
+			 ResultSet rs = pstmt.executeQuery();) {	
 			while(rs.next()) {
 				customer = new Customer();
-				customer.setCid(rs.getLong("cid"));
+				customer.setId(rs.getLong("id"));
 				customer.setName(rs.getString("name"));
 				customer.setSsn(rs.getString("ssn"));
 				customer.setPhone(rs.getString("phone"));
@@ -139,7 +138,7 @@ public class CustomerDao {
 	 */
 	public void updateUser(Customer customer) {
 		String sql = "UPDATE Customer SET name=?, phone=?, tel=?, passwd=?, email=? " 
-							+ "WHERE cid=?";
+							+ "WHERE id=?";
 		try(Connection con = dataSource.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);) {
 			
@@ -148,19 +147,13 @@ public class CustomerDao {
 			pstmt.setString(3, customer.getTel());
 			pstmt.setString(4, customer.getPasswd());
 			pstmt.setString(5, customer.getEmail());
-			pstmt.setLong(6, customer.getCid());
+			pstmt.setLong(6, customer.getId());
 			pstmt.executeUpdate();
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-	}	
-	public static void main(String[] args) {
-		Customer customer = new Customer("james", "8912221684411", "01023411122", "0535441212", "Spring2", "Spring12", "Spring2@gmail.com");
-		CustomerDao dao = new CustomerDao();
-		dao.addCustomer(customer);
-		
-	}
+	}		
 
 }

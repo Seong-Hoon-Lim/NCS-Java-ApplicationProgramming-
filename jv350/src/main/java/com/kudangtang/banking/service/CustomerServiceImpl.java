@@ -8,7 +8,7 @@ import com.kudangtang.banking.domain.Customer;
 
 public class CustomerServiceImpl implements CustomerService {
 
-//	private static CustomerServiceImpl cs = new CustomerServiceImpl();
+	private static CustomerServiceImpl cs = new CustomerServiceImpl();
 	private CustomerDao customerDao;
 	
 	private CustomerServiceImpl() {
@@ -23,9 +23,9 @@ public class CustomerServiceImpl implements CustomerService {
 		this.customerDao = customerDao;
 	}
 	
-//	public static CustomerService getInstance() {
-//		return cs;
-//	}
+	public static CustomerService getCustomerService() {
+		return cs;
+	}
 	
 	
 	/**
@@ -33,10 +33,11 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @param customer
 	 */	
 	@Override
-	public void addCustomer(String name, String ssn, String phone, String tel, 
+	public void addCustomer(long id, String name, String ssn, String phone, String tel, 
 			String userId, String passwd, String email) {
 		// TODO Auto-generated method stub
 		Customer customer = new Customer();
+		customer.setId(id);
 		customer.setName(name);
 		customer.setSsn(ssn);
 		customer.setPhone(phone);

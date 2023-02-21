@@ -23,15 +23,16 @@ public class ListUsersServlet extends HttpServlet{
 	
 	public void init() {
 		ServletContext context = getServletContext();
-		DataSource dataSource = (DataSource)context.getAttribute("dataSource11");
+		DataSource dataSource = (DataSource)context.getAttribute("dataSource");
 		customerServiceImpl = new CustomerServiceImpl(dataSource);
+		customerServiceImpl = (CustomerServiceImpl) CustomerServiceImpl.getCustomerService();
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		//비즈니스 서비스 호출
 		List<Customer> userList = (ArrayList<Customer>)customerServiceImpl.getAllCustomers();
-		request.setAttribute("list", userList);
+		request.setAttribute("userList", userList);
 		request.getRequestDispatcher("list_users.jsp").forward(request, response);
 		
 	}
