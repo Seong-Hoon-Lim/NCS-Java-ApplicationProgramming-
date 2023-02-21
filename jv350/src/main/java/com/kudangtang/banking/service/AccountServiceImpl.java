@@ -1,8 +1,11 @@
 package com.kudangtang.banking.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-
+import com.kudangtang.banking.DataSource;
 import com.kudangtang.banking.dao.AccountDao;
 import com.kudangtang.banking.domain.Account;
 import com.kudangtang.banking.domain.AccountNumGenerator;
@@ -10,11 +13,13 @@ import com.kudangtang.banking.domain.CheckingAccount;
 import com.kudangtang.banking.domain.SavingsAccount;
 
 public class AccountServiceImpl implements AccountService {
+	private static final Map<String, Account> BANK_ACCOUNTS = new HashMap<>();
+	private static final Map<String, List<Account>> CUSTOMERS_ACCOUNTS = new HashMap<>();
 	
-	private static AccountService as = new AccountServiceImpl();
+//	private static AccountService as = new AccountServiceImpl();
 	private AccountDao accountDao;	
 	
-	public AccountServiceImpl() {
+	public AccountServiceImpl(DataSource dataSource) {
 		accountDao = new AccountDao();
 	}
 	
@@ -22,8 +27,32 @@ public class AccountServiceImpl implements AccountService {
 		this.accountDao = accountDao;
 	}
 	
-	public static AccountService getInstance() {
-		return as;
+//	public static AccountService getInstance() {
+//		return as;
+//	}	
+	
+	/**
+	 * 계좌 등록 기능
+	 * @param account
+	 */	
+	@Override
+	public Account addAccount(Account account) {
+		if(BANK_ACCOUNTS.containsKey(account.getAccountNum())) {
+			return BANK_ACCOUNTS.get(account.getAccountNum());
+		}
+		BANK_ACCOUNTS.put(account.getAccountNum(), account);
+		if(CUSTOMERS_ACCOUNTS.containsKey(account.getCustomer().getSsn())) {
+			List<Account> list = CUSTOMERS_ACCOUNTS.get(account.getCustomer().getSsn());
+			list.add(account);
+		}else {
+			List<Account> list = new ArrayList<>();
+			list.add(account);
+			CUSTOMERS_ACCOUNTS.put(account.getCustomer().getSsn(),list);
+		}
+		
+		
+		return account;
+		
 	}
 	
 	/**
@@ -50,15 +79,6 @@ public class AccountServiceImpl implements AccountService {
 		// TODO Auto-generated method stub
 		return new CheckingAccount(AccountNumGenerator.generateAccountNum(), 
 				balance, overdraft);
-	}
-
-	/**
-	 * 계좌 등록 기능
-	 * @param account
-	 */	
-	@Override
-	public void addAccount(Account account) {
-		accountDao.addAccount(account);
 	}
 
 	/**

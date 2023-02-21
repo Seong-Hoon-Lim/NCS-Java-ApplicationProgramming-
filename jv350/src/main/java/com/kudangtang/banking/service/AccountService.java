@@ -7,6 +7,12 @@ import com.kudangtang.banking.domain.Account;
 public interface AccountService {
 	
 	/**
+	 * 계좌 등록 기능
+	 * @param account
+	 */
+	Account addAccount(Account account);
+	
+	/**
 	 * 예금 계좌 생성 기능
 	 * @param balance
 	 * @param interestRate
@@ -21,12 +27,6 @@ public interface AccountService {
 	 * @return
 	 */
 	Account createCheckingAccount(double balance, double overdraft);
-	
-	/**
-	 * 계좌 등록 기능
-	 * @param account
-	 */
-	void addAccount(Account account);
 	
 	/**
 	 * 모든 계좌 리스트 조회 기능

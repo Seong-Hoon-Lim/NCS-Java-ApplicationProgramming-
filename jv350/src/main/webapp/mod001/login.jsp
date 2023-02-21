@@ -18,7 +18,7 @@
 	<h3>로그인</h3>
 	<form action="login.do" method="post">
 		<label>아이디 </label><input type="text" name="userId"/><br>
-		<label>패스워드 </label><input type="password" name="passwd"/><br>
+		<label>패스워드 </label><input type="password" name="passwd" value="Spring12"/><br>
 		<br>
 		<input type="submit" value="로그인"/>
 	</form>

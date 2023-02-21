@@ -8,30 +8,31 @@ import com.kudangtang.banking.domain.Customer;
 
 public class CustomerServiceImpl implements CustomerService {
 
-	private static CustomerServiceImpl cs = new CustomerServiceImpl();
+//	private static CustomerServiceImpl cs = new CustomerServiceImpl();
 	private CustomerDao customerDao;
 	
 	private CustomerServiceImpl() {
-		customerDao = new CustomerDao();
+		
 	}
 	
 	public CustomerServiceImpl(DataSource dataSource) {
 		customerDao = new CustomerDao(dataSource);
 	}
 	
-//	public CustomerServiceImpl(CustomerDao customerDao) {
-//		this.customerDao = customerDao;
-//	}
-	
-	public static CustomerService getInstance() {
-		return cs;
+	public CustomerServiceImpl(CustomerDao customerDao) {
+		this.customerDao = customerDao;
 	}
+	
+//	public static CustomerService getInstance() {
+//		return cs;
+//	}
 	
 	
 	/**
 	 * 고객 등록 기능
 	 * @param customer
 	 */	
+	@Override
 	public void addCustomer(String name, String ssn, String phone, String tel, 
 			String userId, String passwd, String email) {
 		// TODO Auto-generated method stub
@@ -43,11 +44,9 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setUserId(userId);
 		customer.setPasswd(passwd);
 		customer.setEmail(email);
-		
 		addCustomer(customer);	
 	}	
 	
-	@Override
 	public void addCustomer(Customer customer) {
 		customerDao.addCustomer(customer);
 	}
@@ -58,8 +57,9 @@ public class CustomerServiceImpl implements CustomerService {
 	 * @param passwd
 	 */
 	@Override
-	public Customer getUser(String id, String passwd) {
-		return customerDao.findUser(id, passwd);
+	public Customer getUser(String userId, String passwd) {
+		System.out.println(userId + ", " + passwd);
+		return customerDao.findUser(userId, passwd);
 
 	}
 
@@ -83,5 +83,17 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		return customerDao.findAllCustomerList();
 	}
+	
+	/**
+	 * 고객정보 수정 기능
+	 */
+	@Override
+	public void updateUser(Customer customer) {
+		// TODO Auto-generated method stub
+		customerDao.updateUser(customer);
+		
+	}
+	
+	
 
 }

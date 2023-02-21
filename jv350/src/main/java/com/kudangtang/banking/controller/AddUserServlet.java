@@ -39,7 +39,7 @@ public class AddUserServlet extends HttpServlet {
 			String email1 = request.getParameter("email1");
 			String email2 = request.getParameter("email2");
 			String email = email1 + "@" + email2;
-			String regDate = request.getParameter("regDate");
+//			String regDate = request.getParameter("regDate");
 			
 			//폼데이터 유효성 검증
 			List<String> errorMsgs = new ArrayList<>();
@@ -64,7 +64,7 @@ public class AddUserServlet extends HttpServlet {
 			customer.setUserId(userId);
 			customer.setPasswd(passwd);
 			customer.setEmail(email);
-			customer.setRegDate(regDate);
+//			customer.setRegDate(regDate);
 			
 			//비즈니스 서비스 호출
 			customerServiceImpl.addCustomer(customer);

@@ -14,11 +14,10 @@ public class Customer {
 	public Customer() {
 		
 	}
-		
-	public Customer(Long cid, String name, String ssn, String phone, String tel, 
-			String userId, String passwd, String email, String regDate) {
+	
+	public Customer(String name, String ssn, String phone, String tel, 
+			String userId, String passwd, String email) {
 		super();
-		this.cid = cid;
 		this.name = name;
 		this.ssn = ssn;
 		this.phone = phone;
@@ -26,7 +25,6 @@ public class Customer {
 		this.userId = userId;
 		this.passwd = passwd;
 		this.email = email;
-		this.regDate = regDate;
 	}
 	
 	public Long getCid() {

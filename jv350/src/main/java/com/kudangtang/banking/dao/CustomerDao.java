@@ -1,5 +1,6 @@
 package com.kudangtang.banking.dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,12 +11,13 @@ import java.util.List;
 import com.kudangtang.banking.DataSource;
 import com.kudangtang.banking.domain.Customer;
 
+
 public class CustomerDao {
 	private DataSource dataSource;
 	
-//	public CustomerDao() {
-//		
-//	}
+	public CustomerDao() {
+		
+	}
 	
 	public CustomerDao(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -26,39 +28,21 @@ public class CustomerDao {
 	 * @param customer
 	 */
 	public void addCustomer(Customer customer) {
-		String sql = "INSERT INTO Customer (name, ssn, phone, tel, userId, passwd, email)" 
-						+ "VALUES (?,?,?,?,?,?,?)";
-		try { Connection con = null;
-			  PreparedStatement pstmt = null;
-			  try { con = dataSource.getConnection();
-			  		pstmt = con.prepareStatement(sql);
-			  		
-			  		pstmt.setString(1, customer.getName());
-					pstmt.setString(2, customer.getSsn());
-					pstmt.setString(3, customer.getPhone());
-					pstmt.setString(4, customer.getTel());
-					pstmt.setString(5, customer.getUserId());
-					pstmt.setString(6, customer.getPasswd());
-					pstmt.setString(7, customer.getEmail());
-					pstmt.executeUpdate();
-			  }
-			  finally {
-				dataSource.close(pstmt, con);
-			}
+	String sql = "INSERT INTO Customer(name, ssn, phone, tel, userId, passwd, email)" 
+					+ "VALUES (?,?,?,?,?,?,?)";
+		try (Connection con = dataSource.getConnection();
+			 PreparedStatement pstmt = con.prepareStatement(sql);) {
+				pstmt.setString(1, customer.getName());
+				pstmt.setString(2, customer.getSsn());
+				pstmt.setString(3, customer.getPhone());
+				pstmt.setString(4, customer.getTel());
+				pstmt.setString(5, customer.getUserId());
+				pstmt.setString(6, customer.getPasswd());
+				pstmt.setString(7, customer.getEmail());
+//				pstmt.setString(8, customer.getRegDate());
+				pstmt.executeUpdate();
 		}
-//		try (Connection con = dataSource.getConnection();
-//			 PreparedStatement pstmt = con.prepareStatement(sql);) {
-//				pstmt.setString(1, customer.getName());
-//				pstmt.setString(2, customer.getSsn());
-//				pstmt.setString(3, customer.getPhone());
-//				pstmt.setString(4, customer.getTel());
-//				pstmt.setString(5, customer.getUserId());
-//				pstmt.setString(6, customer.getPasswd());
-//				pstmt.setString(7, customer.getEmail());
-////				pstmt.setString(8, customer.getRegDate());
-//				pstmt.executeUpdate();
-//			}
-		catch(SQLException e) {
+		catch(Exception e) {
 			e.printStackTrace();
 		}				
 		
@@ -71,25 +55,38 @@ public class CustomerDao {
 	 * @param passwd
 	 * @return
 	 */
-	public Customer findUser(String id, String passwd) {
-		String sql = "SELECT cid, name, ssn, phone, tel, userId, passwd, email, regDate " +
-						"FROME Customer WHERE userId=? AND passwd=?";
+	public Customer findUser(String userId, String passwd) {
+		String sql = "SELECT name, ssn, phone, tel, userId, passwd, email, regDate " +
+						" FROM Customer WHERE userId=? AND passwd=?";
 		Customer customer = null;
 		
-		try (Connection con = dataSource.getConnection();
-			 PreparedStatement pstmt = con.prepareStatement(sql);
-			 ResultSet rs = pstmt.executeQuery();) {			
-			if(rs.next()) {
-				customer = new Customer();
-				customer.setCid(rs.getLong("cid"));
-				customer.setName(rs.getString("name"));
-				customer.setSsn(rs.getString("ssn"));
-				customer.setPhone(rs.getString("phone"));
-				customer.setTel(rs.getString("tel"));
-				customer.setUserId(rs.getString("userId"));
-				customer.setPasswd(rs.getString("passwd"));
-				customer.setEmail(rs.getString("email"));
-//				customer.setRegDate(rs.getString("regDate"));
+		try {
+			Connection con = null;
+			PreparedStatement pstmt = null;	
+			ResultSet rs = null;
+			try {
+				con = dataSource.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, userId);
+				pstmt.setString(2, passwd);
+				
+				rs = pstmt.executeQuery();
+		
+				if(rs.next()) {
+					customer = new Customer();
+					customer.setCid(rs.getLong("cid"));
+					customer.setName(rs.getString("name"));
+					customer.setSsn(rs.getString("ssn"));
+					customer.setPhone(rs.getString("phone"));
+					customer.setTel(rs.getString("tel"));
+					customer.setUserId(rs.getString("userId"));
+					customer.setPasswd(rs.getString("passwd"));
+					customer.setEmail(rs.getString("email"));
+//					customer.setRegDate(rs.getString("regDate"));
+				}
+			}
+			finally {
+				DataSource.close(rs, pstmt, con);
 			}
 		}
 		catch(Exception e) {
@@ -134,6 +131,36 @@ public class CustomerDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	/**
+	 * DB에서 클라이언트가 입력한 고객 정보를 수정하는 기능
+	 * @param customer
+	 */
+	public void updateUser(Customer customer) {
+		String sql = "UPDATE Customer SET name=?, phone=?, tel=?, passwd=?, email=? " 
+							+ "WHERE cid=?";
+		try(Connection con = dataSource.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);) {
+			
+			pstmt.setString(1, customer.getName());
+			pstmt.setString(2, customer.getPhone());
+			pstmt.setString(3, customer.getTel());
+			pstmt.setString(4, customer.getPasswd());
+			pstmt.setString(5, customer.getEmail());
+			pstmt.setLong(6, customer.getCid());
+			pstmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}	
+	public static void main(String[] args) {
+		Customer customer = new Customer("james", "8912221684411", "01023411122", "0535441212", "Spring2", "Spring12", "Spring2@gmail.com");
+		CustomerDao dao = new CustomerDao();
+		dao.addCustomer(customer);
+		
+	}
 
 }

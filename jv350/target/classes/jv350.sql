@@ -1,4 +1,5 @@
 use jv350;
+DROP TABLE Customer;
 CREATE TABLE Customer (
 	cid		BIGINT		PRIMARY KEY AUTO_INCREMENT,
 	name	VARCHAR(20)	NOT NULL,
@@ -13,6 +14,10 @@ CREATE TABLE Customer (
 )AUTO_INCREMENT = 1001;
 SELECT * FROM Customer;
 
+INSERT INTO Customer(name, ssn, phone, tel, userId, passwd, email) 
+			VALUES ('유비', '8805241687722', '01023411144', '0535541144', 'Spring', 'Spring12', 'Spring123@gmail.com');
+
+DROP TABLE Account;
 CREATE TABLE Account (
 	aid				BIGINT		PRIMARY KEY	AUTO_INCREMENT,
 	accountNum		VARCHAR(9) 	NOT	NULL,					-- ####-####

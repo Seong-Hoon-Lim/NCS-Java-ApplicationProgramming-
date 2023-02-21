@@ -50,6 +50,7 @@ public class Account {
 
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
+		
 	}
 
 	public double getBalance() {
