@@ -18,10 +18,10 @@ import com.kudangtang.banking.service.CustomerServiceImpl;
 @WebServlet("/mod001/add_user.do")
 public class AddUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CustomerServiceImpl customerServiceImpl;
+	private CustomerServiceImpl customerService;
 	
 	public void init() {
-		customerServiceImpl = new CustomerServiceImpl((DataSource)getServletContext()
+		customerService = new CustomerServiceImpl((DataSource)getServletContext()
 				.getAttribute("dataSource"));
 	}
 	
@@ -67,7 +67,7 @@ public class AddUserServlet extends HttpServlet {
 //			customer.setRegDate(regDate);
 			
 			//비즈니스 서비스 호출
-			customerServiceImpl.addCustomer(customer);
+			customerService.addCustomer(customer);
 			
 			//Next View 결정
 			request.setAttribute("customer", customer);

@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class InitializeContent implements ServletContextListener {
-	private static final String JDBC_FILE_PATH = "/WEB-INF/classes/jdbc.properties";
+	private static final String JDBC_FILE_PATH = "jv350/WEB-INF/classes/jdbc.properties";
 	
 	/**
 	 * 서버가 Start up 될 때 실행될 메소드

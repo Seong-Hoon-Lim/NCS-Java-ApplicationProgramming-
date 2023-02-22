@@ -19,19 +19,18 @@ import com.kudangtang.banking.service.CustomerServiceImpl;
 public class ListUsersServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
-	private CustomerServiceImpl customerServiceImpl;
+	private CustomerServiceImpl customerService;
 	
 	public void init() {
-		ServletContext context = getServletContext();
-		DataSource dataSource = (DataSource)context.getAttribute("dataSource");
-		customerServiceImpl = new CustomerServiceImpl(dataSource);
-		customerServiceImpl = (CustomerServiceImpl) CustomerServiceImpl.getCustomerService();
+		customerService = new CustomerServiceImpl((DataSource)getServletContext()
+				.getAttribute("dataSource"));
+		
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		//비즈니스 서비스 호출
-		List<Customer> userList = (ArrayList<Customer>)customerServiceImpl.getAllCustomers();
+		List<Customer> userList = (ArrayList<Customer>)customerService.getAllCustomers();
 		request.setAttribute("userList", userList);
 		request.getRequestDispatcher("list_users.jsp").forward(request, response);
 		

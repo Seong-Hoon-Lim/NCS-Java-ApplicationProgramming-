@@ -55,12 +55,10 @@ public class CustomerServiceImpl implements CustomerService {
 	/**
 	 * 로그인 기능
 	 * @param id
-	 * @param passwd
 	 */
 	@Override
-	public Customer getUser(String userId, String passwd) {
-		System.out.println(userId + ", " + passwd);
-		return customerDao.findUser(userId, passwd);
+	public Customer getUser(String userId) {
+		return customerDao.findUser(userId);
 
 	}
 

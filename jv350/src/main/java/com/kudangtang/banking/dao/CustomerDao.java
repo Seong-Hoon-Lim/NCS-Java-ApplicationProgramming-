@@ -52,10 +52,9 @@ public class CustomerDao {
 	 * 고객 DB 에 저장된 유저 중 해당하는 유저가 있는지 
 	 * 확인하고 가져오는 메소드
 	 * @param id
-	 * @param passwd
 	 * @return
 	 */
-	public Customer findUser(String userId, String passwd) {
+	public Customer findUser(String userId) {
 		String sql = "SELECT * FROM Customer WHERE userId=? AND passwd=?";
 		Customer customer = null;
 		
@@ -67,7 +66,6 @@ public class CustomerDao {
 				con = dataSource.getConnection();
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, userId);
-				pstmt.setString(2, passwd);
 				
 				rs = pstmt.executeQuery();
 		

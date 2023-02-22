@@ -1,7 +1,6 @@
 package com.kudangtang.banking.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +16,10 @@ import com.kudangtang.banking.service.CustomerServiceImpl;
 @WebServlet("/mod001/update_user.do")
 public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CustomerServiceImpl customerServiceImpl;
+	private CustomerServiceImpl customerService;
 	
 	public void init() {
-		customerServiceImpl = new CustomerServiceImpl((DataSource)getServletContext()
+		customerService = new CustomerServiceImpl((DataSource)getServletContext()
 				.getAttribute("dataSource"));
 	}
 	
@@ -47,7 +46,7 @@ public class UpdateUserServlet extends HttpServlet {
 			customer.setEmail(validateEqual(email, customer.getEmail(), customer));
 						
 			//비즈니스 서비스 호출
-			customerServiceImpl.updateUser(customer);
+			customerService.updateUser(customer);
 						
 	}			
 	
