@@ -31,11 +31,6 @@ public class AccountServiceImpl implements AccountService {
 //		return as;
 //	}	
 	
-	/**
-	 * 계좌 등록 기능
-	 * @param account
-	 */	
-	@Override
 	public Account addAccount(Account account) {
 		if(BANK_ACCOUNTS.containsKey(account.getAccountNum())) {
 			return BANK_ACCOUNTS.get(account.getAccountNum());
@@ -48,11 +43,28 @@ public class AccountServiceImpl implements AccountService {
 			List<Account> list = new ArrayList<>();
 			list.add(account);
 			CUSTOMERS_ACCOUNTS.put(account.getCustomer().getSsn(),list);
-		}
+		}		
 		
+		return account;		
+	}
+	
+	/**
+	 * 계좌 등록 기능
+	 */
+	@Override
+	public void addAccount(long aid, String accountNum, double balance, double interestRate, 
+							double overdraft, char accountType, long customerId) {
+		Account account = new Account();
+		accountNum = AccountNumGenerator.generateAccountNum();
 		
-		return account;
-		
+		account.setAid(aid);
+		account.setAccountNum(accountNum);
+		account.setBalance(balance);
+		account.setInterestRate(interestRate);
+		account.setOverdraft(overdraft);
+		account.getAccountType();
+		account.getCustomerId();
+		addAccount(account);		
 	}
 	
 	/**
@@ -62,11 +74,13 @@ public class AccountServiceImpl implements AccountService {
 	 * @return
 	 */
 	@Override
-	public Account createSavingsAccount(double balance, double interestRate) {
+	public void createSavingsAccount(double balance, double interestRate) {
 		// TODO Auto-generated method stub
-		return new SavingsAccount(AccountNumGenerator.generateAccountNum(), 
-				balance, interestRate);
+		SavingsAccount sa = new SavingsAccount(AccountNumGenerator.generateAccountNum(), balance, interestRate);
+		accountDao.addAccount(sa);
 	}
+	
+	
 
 	/**
 	 * 마이너스 계좌 생성 기능
@@ -75,10 +89,10 @@ public class AccountServiceImpl implements AccountService {
 	 * @return
 	 */
 	@Override
-	public Account createCheckingAccount(double balance, double overdraft) {
+	public void createCheckingAccount(double balance, double overdraft) {
 		// TODO Auto-generated method stub
-		return new CheckingAccount(AccountNumGenerator.generateAccountNum(), 
-				balance, overdraft);
+		CheckingAccount ca = new CheckingAccount(AccountNumGenerator.generateAccountNum(), balance, overdraft);
+		accountDao.addAccount(ca);
 	}
 
 	/**
@@ -109,7 +123,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void accountTransfer(double balance) {
 		// TODO Auto-generated method stub		
-
+		
 	}
 
 }
