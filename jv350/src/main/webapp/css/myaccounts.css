@@ -1,0 +1,52 @@
+@charset "UTF-8";
+#myaccounts{
+	width: 600px;
+	height: 700px;
+	position: absolute;
+	top: 80px;
+	left: 300px;
+}
+
+#myaccounts h3{
+	font-size: 24px;
+	text-align : center;
+	margin-bottom: 30px;
+}
+
+#listwrap{
+	display: flex;
+	flex-wrap: wrap;
+	width: 600px;
+	height: 400px;
+	justify-content: space-around;
+	align-content: flex-start;
+}
+
+#myaccounts #listwrap ul{
+	width: 250px;
+	height: 150px;
+	border: 1.5px solid #333;
+	border-radius: 15px;
+	padding: 15px;
+	margin-bottom: 20px;
+	background-color: rgb(210, 179, 263);
+}
+
+#myaccounts #listwrap ul li{
+	list-style: none;
+	margin-bottom: 15px;
+	text-size: 18px;
+	font-weight: 500;
+}
+
+#myaccounts a{
+	display: block;
+	width: 200px;
+	height: 80px;
+	background-color: rgb(178, 139, 223);
+	color: white;
+	font-weight: 700;
+	text-align: center;
+	line-height: 80px;
+	font-size: 24px;
+}
