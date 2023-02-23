@@ -43,7 +43,7 @@
 		<ul>
 			<li>계좌번호 : <%=acc.getAccountNum()%></li>
 			<li>잔액 : <%=acc.getBalance()%></li>
-			<li>계좌종류 : <%=acc.getAccountType()%></li>
+			<li>계좌종류 : <%=acc.getAccountType()%></li>				
 		</ul>
 		<%
 		}

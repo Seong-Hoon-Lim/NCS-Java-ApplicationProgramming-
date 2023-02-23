@@ -10,9 +10,6 @@
 <title>금융서비스 페이지</title>
 </head>
 <body>
-	<form action="../servlets/removeAccountProc.jsp">
-		<input type="submit" value="계좌삭제" name="accountremove">
-	</form>	
-	
+	<button><a href="removeaccount.jsp">계좌해지</a></button>	
 </body>
 </html>
