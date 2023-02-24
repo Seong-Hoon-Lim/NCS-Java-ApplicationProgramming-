@@ -113,7 +113,6 @@ public class AccountDao {
 			}
 		return accAllList;			
 	}
-
 	
 	public ArrayList<Account> findAccountByUserId(String userId) {
 		ArrayList<Account> accountList = new ArrayList<>();
@@ -144,6 +143,38 @@ public class AccountDao {
 			e.printStackTrace();
 		}
 		return accountList;
+	}	
+	
+	public ArrayList<Account> findAccountByAccountNum(String accountNum) {
+		ArrayList<Account> list = new ArrayList<>();
+		String sql = "SELECT * FROM Account WHERE accountNum=?";
+		Account account = null;
+		try {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				con = dataSource.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, accountNum);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					account = new Account();
+					account.setUserId(rs.getString("userId"));
+					account.setBalance(rs.getDouble("balance"));
+					account.setAccountType((rs.getString("accountType")).charAt(0));
+					account.setAccountNum(rs.getString("accountNum"));				
+					list.add(account);
+				}
+			}
+			finally {
+				DataSource.close(rs, pstmt, con);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	/**

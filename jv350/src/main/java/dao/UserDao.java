@@ -66,7 +66,7 @@ public class UserDao {
 					user.setRegDate(rs.getString("regDate"));
 				}
 			} finally {
-				dataSource.close(rs, pstmt, con);
+				DataSource.close(rs, pstmt, con);
 			}
 
 		} catch (Exception e) {

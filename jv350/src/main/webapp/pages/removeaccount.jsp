@@ -13,23 +13,29 @@
 	<%
 	ArrayList<Account> accs = new ArrayList<Account>();
 	AccountService aService = new AccountService();
+	Account account = new Account();
+	request.setAttribute("accountNum", account.getAccountNum());
 	
 	String myid = (String) session.getAttribute("id");
-	System.out.println(myid);
-	accs = aService.findmyAccount(myid);
+	String myaccnum = (String) request.getAttribute("accountNum");
 	%>
-	<h3>내 계좌 리스트</h3>
+	<h3>내 계좌 정보</h3>
 		
 	<div id="listwrap">
 		<%
+		
 		for (int i = 0; i < accs.size(); i++) {
 			Account acc = accs.get(i);
+			if (myaccnum.equals(acc.getAccountNum())) {
+				System.out.println(myaccnum);
+			}
+				
 		%>
 		<form action="../servlets/removeAccountProc.jsp">
-			<input type="checkbox" name="accountcheck">
 			<input type="submit" value="계좌해지" name="accountremove">
 		</form>
 		<%
+			
 			String msg = (String)request.getAttribute("error");
 			if (msg == null) {
 				msg="";
@@ -39,7 +45,7 @@
 			}
 		%>
 			<%=msg %>
-		
+
 		<ul>
 			<li>계좌번호 : <%=acc.getAccountNum()%></li>
 			<li>잔액 : <%=acc.getBalance()%></li>

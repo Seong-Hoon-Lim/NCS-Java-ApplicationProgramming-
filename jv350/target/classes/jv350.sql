@@ -1,3 +1,4 @@
+DROP TABLE User;
 CREATE TABLE User (
 	uid 	 	BIGINT 		       PRIMARY KEY AUTO_INCREMENT,
 	userId		VARCHAR(15)		   NOT NULL,

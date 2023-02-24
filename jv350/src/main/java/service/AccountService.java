@@ -28,6 +28,11 @@ public class AccountService {
 		return aDao.findAccountByUserId(userId);
 	}
 	
+	public ArrayList<Account> findmyAccountNum(String accountNum) {
+		Account account = new Account();
+		return aDao.findAccountByAccountNum(accountNum);
+	}
+	
 	/**
 	 * 현재 로그인 된 userId의 계좌 삭제 기능
 	 */
