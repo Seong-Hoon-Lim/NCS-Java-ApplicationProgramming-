@@ -1,7 +1,0 @@
-mod009 - ServletContextListener와 Application Scope
-	1. ServletContextListener
-		-. contextInitialized()
-		-. contextDestroyed()
-	2. Application Scope
-		-. setAttribute()
-		-. getAttribute()
