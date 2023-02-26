@@ -19,6 +19,7 @@ public class CartItem {
 		this.itemBook = bookList;
 		this.bookId = bookList.getBookId();
 		this.quantity = 1;
+		updateTotalPrice();
 	}
 	
 	public Book getItemBook() {

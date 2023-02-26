@@ -20,8 +20,8 @@ public class Book extends Item {
 	
 	
 
-	public Book(String bookId, String name, int unitPrice, String author, String descroption, String category,
-			String releaseDate) {
+	public Book(String bookId, String name, int unitPrice, String author, 
+			String descroption, String category, String releaseDate) {
 		super(bookId, name, unitPrice);
 		this.author = author;
 		this.descroption = descroption;
@@ -29,15 +29,14 @@ public class Book extends Item {
 		this.releaseDate = releaseDate;
 	}
 
+	@Override
+	String getBookId() { return bookId; }
 
 	@Override
-	String getBookId() { return null; }
+	String getName() { return name; }
 
 	@Override
-	String getName() { return null; }
-
-	@Override
-	int getUnitPrice() { return 0; }
+	int getUnitPrice() { return unitPrice; }
 
 	@Override
 	void setBookId(String bookId) {  }

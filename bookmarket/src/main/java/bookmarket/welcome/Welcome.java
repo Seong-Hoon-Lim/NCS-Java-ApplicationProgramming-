@@ -203,6 +203,7 @@ public class Welcome {
 		System.out.println("5. 장바구니의 항목 수량 줄이기: ");
 	}
 	
+	//장바구니의 항목을 선택해서 삭제하는 메소드
 	public static void menuCartRemoveItem() {
 		if (mCart.mCartCount == 0) {
 			System.out.println("장바구니에 항목이 없습니다");
@@ -230,7 +231,7 @@ public class Welcome {
 					str = input.nextLine();
 					if (str.toUpperCase().equals("Y")) {
 						System.out.println(mCart.mCartItem[numId].getBookId() + 
-								"장바구니에서 도서가 삭제되었습니다.");
+								" 도서가 장바구니에서 도서가 삭제되었습니다.");
 						mCart.removeCart(numId);
 					}
 					quit = true;
